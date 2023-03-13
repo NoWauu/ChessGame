@@ -45,7 +45,6 @@ while PLAYING:
     for x in range(30, WINDOWSIZE[0], 100):
         screen.blit(pon, (x, 630))
 
-    
     king = pygame.image.load("IMG/black/king.png")
     queen = pygame.image.load("IMG/black/queen.png")
     rook = pygame.image.load("IMG/black/rook.png")
