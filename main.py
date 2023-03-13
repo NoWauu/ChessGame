@@ -8,12 +8,12 @@ BLACKCASE = (91, 60, 17)
 
 screen = pygame.display.set_mode(WINDOWSIZE)
 
-playing = True
-while playing:
+PLAYING = True
+while PLAYING:
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            playing = False
+            PLAYING = False
 
     screen.fill(BLACKCASE)
     for x in range(30, WINDOWSIZE[0], 200):
