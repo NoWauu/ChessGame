@@ -1,4 +1,6 @@
 import pygame
+from modules.pieces import WhitePieces, BlackPieces
+from modules.plateau import Plateau
 
 
 pygame.init()
@@ -13,6 +15,22 @@ FPS = 60
 SCREEN = pygame.display.set_mode(WINDOWSIZE)
 pygame.display.set_caption("Chess")
 
+# dessine le plateau
+plateau = Plateau(SCREEN, BLACKCASE, WHITECASE)
+plateau.draw_background()
+plateau.draw_lines()
+
+# place les pièces blanches
+pieces_blanches = WhitePieces()
+pieces_blanches.draw(SCREEN)
+
+# place les pièces noires
+pieces_noires = BlackPieces()
+pieces_noires.draw(SCREEN)
+
+# True : blanc / False : noir
+turn = True
+
 PLAYING = True
 clock = pygame.time.Clock()
 while PLAYING:
@@ -20,13 +38,11 @@ while PLAYING:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             PLAYING = False
+        if event.type == pygame.MOUSEBUTTONUP:
+            pieces_blanches.click()
 
-    pygame.draw.rect(SCREEN, BLACKCASE, (30, 30, WINDOWSIZE[0]-30, WINDOWSIZE[1]-30))
-    for x in range(30, WINDOWSIZE[0], 200):
-        for y in range(30, WINDOWSIZE[1], 200):
-            pygame.draw.rect(SCREEN, WHITECASE, (x, y, 100, 100))
-            pygame.draw.rect(SCREEN, WHITECASE, (x + 100, y + 100, 100, 100))
 
+    # actualise l'écran
     pygame.display.flip()
 
 pygame.quit()
