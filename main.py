@@ -1,6 +1,8 @@
+"""classe principale"""
 import pygame
 from modules.plateau import Plateau
 from modules.pieces import Pieces
+from modules.pawn import Pawn
 
 
 pygame.init()
@@ -24,8 +26,8 @@ plateau.draw_lines()
 pieces = Pieces()
 pieces.place(SCREEN)
 
-# True : blanc / False : noir
-turn = True
+pawn = Pawn()
+pawn.place(SCREEN)
 
 PLAYING = True
 clock = pygame.time.Clock()
