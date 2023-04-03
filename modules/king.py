@@ -3,20 +3,14 @@ import pygame
 
 class King:
     """Classe de gestion du roi"""
-    def __init__(self) -> None:
-        self.white_king = {
-            "king": [pygame.image.load("IMG/white/king.png"), [430, 730], (100, 100)]
-        }
-        self.black_king = {
-            "king": [pygame.image.load("IMG/black/king.png"), [430, 30], (100, 100)]
-        }
+    def __init__(self, coordinates) -> None:
+
+        self.texture = pygame.image.load("IMG/white/king.png")
+        self.coordinates = coordinates
 
     def place(self, screen: pygame.Surface):
         """place les rois"""
-        for king in self.white_king.values():
-            screen.blit(king[0], king[1])
-        for king in self.black_king.values():
-            screen.blit(king[0], king[1])
+        screen.blit(self.texture, self.coordinates)
 
     def move_diagonal(self, ):
         """déplace le roi en diagonale"""
