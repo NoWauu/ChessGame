@@ -57,13 +57,10 @@ while PLAYING:
         if event.type == pygame.QUIT:
             PLAYING = False
         if event.type == pygame.MOUSEBUTTONUP:
-            pawn1.premove_one(event.pos)
-            if selected == None:
-                selected = pawn1.rect
-            else:
-                selected = None
-                pawn1.coordinates = [pawn1.coordinates[0], pawn1.coordinates[1] - 100]
-            print(selected)
+            for pawn in [pawn1, pawn2, pawn3, pawn4, pawn5, pawn6, pawn7, pawn8]:
+                if pawn.premove_one(event.pos):
+                    pawn.move_forward_by_one()
+
 
 
 

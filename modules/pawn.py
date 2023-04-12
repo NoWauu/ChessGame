@@ -6,6 +6,7 @@ class Pawn:
     def __init__(self, coordinates: list[int, int]) -> None:
         self.texture = pygame.image.load('IMG/white/pawn.png')
         self.coordinates = coordinates
+        self.selected = False
         self.rect = self.texture.get_rect().move(self.coordinates)
         print(self.rect)
 
@@ -13,9 +14,16 @@ class Pawn:
         """place les pions sur le plateau"""
         screen.blit(self.texture, self.coordinates)
 
-    def premove_one(self, clicked_area):
-        if self.rect.collidepoint(clicked_area):
-            print("collide ok")
+    def premove_one(self, clicked_area) -> bool:
+        if self.rect.collidepoint(clicked_area[0], clicked_area[1]+100):
+            return True
+        if self.rect.collidepoint(clicked_area) and self.selected is False:
+            self.selected = True
+        elif self.selected is not False and self.rect.collidepoint(clicked_area[0], clicked_area[1]+100):
+            self.selected = False
+            return True
+        return False
+
 
     def premove_two(self, ):
         pass
@@ -27,7 +35,7 @@ class Pawn:
             avancer (enlever 100 à la coordonée de colonne)
         """
         self.coordinates = [self.coordinates[0], self.coordinates[1] - 100]
-        self.rect.move(self.coordinates)
+        self.rect.centery -= 100
 
     def move_forward_by_two(self, ):
         """avance le pion de deux cases"""
