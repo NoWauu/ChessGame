@@ -60,6 +60,12 @@ while PLAYING:
             for pawn in [pawn1, pawn2, pawn3, pawn4, pawn5, pawn6, pawn7, pawn8]:
                 if pawn.premove_one(event.pos):
                     pawn.move_forward_by_one()
+                if pawn.premove_two(event.pos):
+                    pawn.move_forward_by_two()
+                if pawn.premove_eat(event.pos):
+                    pawn.eat_diagonal()
+                if pawn.can_promote():
+                    pawn.promotion()
 
 
 
