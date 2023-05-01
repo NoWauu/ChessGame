@@ -26,4 +26,4 @@ def draw_squares(screen):
             pygame.draw.rect(screen, color, pygame.Rect(col * SQ_SIZE, row * SQ_SIZE, SQ_SIZE, SQ_SIZE))
 
 def draw_pieces(screen, game_state):
-    
+    pass
