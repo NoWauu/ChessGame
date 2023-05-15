@@ -1,29 +1,31 @@
 import pygame
-from enums import Player
+from modules.plateau import Plateau
+from modules.Pieces import Piece, Pawn
+
+pygame.init()
+
+WINDOW_SIZE = (800, 800)
+WINDOW = pygame.display.set_mode(WINDOW_SIZE)
+
+BLACK_COLOR = (91, 60, 17)
+WHITE_COLOR = (200, 173, 127)
+
+board = Plateau(WINDOW, BLACK_COLOR, WHITE_COLOR)
+board.draw_background()
+
+playing = True
+while playing:
+    for event in pygame.event.get():
+        if event == pygame.QUIT:
+            playing = False
 
 
-# Variables
-WIDTH = HEIGHT = 512
-DIMENSION = 8
-SQ_SIZE = HEIGHT // DIMENSION
-MAX_FPS = 60
-IMAGES = {}
-colors = [pygame.Color("white"), pygame.Color("gray")]
+    board.draw_lines()
 
-def load_images():
-    for piece in Player.PIECES:
-        IMAGES[piece] = pygame.transform.scale(pygame.image.load("images/" + piece + ".png"), (SQ_SIZE, SQ_SIZE))
+    board.squares[0] = Piece.queen
+    pawn = Pawn(0, 0)
+    pawn.draw(WINDOW, Piece.pawn)
 
-def draw_game_state(screen, game_state, valid_moves, square_selected):
-    draw_squares(screen)
-    highlight_squares(screen, game_state, valid_moves, square_selected)
-    draw_pieces(screen, game_state.board)
+    pygame.display.flip()
 
-def draw_squares(screen):
-    for row in range(DIMENSION):
-        for col in range(DIMENSION):
-            color = colors[((row + col) % 2)]
-            pygame.draw.rect(screen, color, pygame.Rect(col * SQ_SIZE, row * SQ_SIZE, SQ_SIZE, SQ_SIZE))
-
-def draw_pieces(screen, game_state):
-    pass
+pygame.quit()
