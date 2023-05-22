@@ -11,7 +11,6 @@ class Plateau:
         self.blackcase = blackcase
         self.whitecase = whitecase
         self.windowsize = self.screen.get_size()
-        self.squares = [0]*64
 
     def draw_background(self):
         """dessine le fond du plateau"""
