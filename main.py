@@ -17,15 +17,15 @@ bishop = Piece(5, 6, "bishop")
 queen = Piece(4, 1, "queen")
 king = Piece(4, 0, "king")
 
-playing = True
-while playing:
+PLAYING = True
+while PLAYING:
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN:
             for piece in [bishop, queen, king]:
                 piece.select_piece()
         if event.type == pygame.QUIT:
-            playing = False
-            
+            PLAYING = False
+
 
 
     board.draw_lines()
