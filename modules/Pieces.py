@@ -1,6 +1,8 @@
 """Gestion des pièces"""
-import pygame
 from math import floor
+
+import pygame
+
 
 class Pieces:
     white_king = pygame.image.load("IMG/white/king.png")
