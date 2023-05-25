@@ -41,7 +41,6 @@ class Piece(Pieces):
             self.selected = True
         else:
             self.selected = False
-        print(self.selected)
 
     def handle(self):
         match self.handler:
@@ -54,7 +53,7 @@ class Piece(Pieces):
             case "queen":
                 return Queen()
             case "king":
-                return King(self.nb_ligne, self.nb_col, self.selected)
+                return King(self.nb_ligne, self.nb_col, self.handler, self.selected, self.collider)
             case "knight":
                 return Knight()
             case _:
@@ -85,15 +84,19 @@ class Queen(Pieces):
         pass
 
 class King(Piece):
-    def __init__(self, nb_ligne, nb_col, handler) -> None:
+    def __init__(self, nb_ligne, nb_col, handler, selected, collider) -> None:
         super().__init__(nb_ligne, nb_col, handler)
-        
-    def move(self):
+        self.selected = selected
+        self.collider = collider
+        print(self.selected)
         if self.selected:
             mouse_pos = pygame.mouse.get_pos()
+            print(mouse_pos[0], floor(mouse_pos[0] / 100))
             self.nb_ligne = floor(mouse_pos[0] / 100)
             self.nb_col = floor(mouse_pos[1] / 100)
             self.collider = self.texture.get_rect().move(self.nb_ligne*100, self.nb_col*100)
+
+
 
 class Knight(Pieces):
     def __init__(self) -> None:
